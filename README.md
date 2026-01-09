@@ -33,7 +33,33 @@ uv --version
 
 ## 2. Replicate the course Python environment
 
-You will be provided with the following files.
+This repository is provided as a **GitHub template** to help you get started quickly with the correct environment and folder structure.
+
+### Create your own copy from the template
+
+1. Open the course template repository on GitHub.
+2. Click **“Use this template”** → **“Create a new repository”**.
+3. Choose a repository name (e.g., `MUSIC422`).
+4. **Set the repository to Private** (required).
+5. Click **“Create repository”**.
+
+This creates your own independent copy of the template—changes you make will not affect the original.
+
+- **Do NOT create a public repository**
+- Public repos make your homework searchable and can lead to **plagiarism issues**
+
+### Clone your repository
+
+Copy the URL of your newly created repository, then run:
+
+```bash
+git clone <your-repo-url>
+cd <your-repo-name>
+```
+
+## Create the environment
+
+You are provided with the following files.
 
 - `pyproject.toml`
 - `uv.lock`
@@ -43,7 +69,7 @@ I also optionally provided a `.gitignore` file to help you avoid committing unne
 
 Make sure all these files are in the **same directory**.
 
-From that directory, run:
+From that directory, simply run:
 
 ```bash
 uv sync
@@ -153,21 +179,83 @@ Using `uv run` ensures:
 
 ---
 
-## 7. Git version control (Optional)
+## 7. Using `uv` and Python in VS Code (Optional)
 
-We recommend using Git for version control. But this is up to your preference, not as a requirement for submission.
+This section explains how to configure **VS Code** so it works smoothly with `uv` and the course environment.
 
-### Best practices:
+### Install the Python extension
 
-- Create a **private repository** (GitHub / GitLab / local only)
+In VS Code:
+
+1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. Install **Python** (by Microsoft)
+
+This extension provides syntax highlighting, linting, debugging, and Jupyter support.
+
+### Open the project folder
+
+In VS Code:
+
+- Click **File → Open Folder**
+- Select the **root folder** of your repository (the one containing `pyproject.toml`)
+
+Do **not** open individual homework folders directly.
+
+### Create the environment (if not already done)
+
+Open the VS Code terminal (**Terminal → New Terminal**) and run:
+
+```bash
+uv sync
+```
+
+This creates the `.venv/` folder used by VS Code.
+
+### Select the correct Python interpreter
+
+1. Open the Command Palette
+   (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Search for **Python: Select Interpreter**
+3. Choose the interpreter located at:
+   - `.venv/bin/python` (macOS / Linux)
+   - `.venv\Scripts\python.exe` (Windows)
+
+VS Code will remember this choice.
+
+### (Optional) Enable VS Code Run / Debug button
+
+If you want the ▶ Run button to work correctly:
+
+- Make sure the selected interpreter is `.venv`
+- Ensure `uv sync` has completed successfully
+
+For consistency with grading, always verify your code at least once using:
+
+```bash
+uv run python your_script.py
+```
+
+### Common issues
+
+- **Wrong Python version shown**
+  → Re-run _Python: Select Interpreter_ and choose `.venv`
+
+- **`ModuleNotFoundError` in VS Code but not in terminal**
+  → You are likely using the wrong interpreter
+
+- **`uv` not found in VS Code terminal**
+  → Restart VS Code after installing `uv`
+
+---
+
+## 8. Git version control (Optional)
+
+We recommend using Git for version control. This will help you organize and track changes. But this is up to your preference, not as a requirement for submission.
+
+Best practices:
+
 - Commit early and often
 - Use clear commit messages
-
-### Important:
-
-- **Do NOT create a public repository**
-- Public repos make your homework searchable and can lead to **plagiarism issues**
-- You are responsible for keeping your work private
 
 ---
 
@@ -180,6 +268,6 @@ uv sync
 uv run python path/to/script.py
 ```
 
-If something breaks, ask the TA for help.
+You can always refer to the [uv official doc](https://docs.astral.sh/uv/) if you want to use a certain feature. If something breaks, ask the TA for help.
 
 Happy coding!
